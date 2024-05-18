@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/JuhDavid/JuhDavid.github.io/static/css/main.d71a850c.css",
+    "main.js": "/JuhDavid/JuhDavid.github.io/static/js/main.e9405c3d.js",
+    "static/js/787.d5fa4d18.chunk.js": "/JuhDavid/JuhDavid.github.io/static/js/787.d5fa4d18.chunk.js",
+    "index.html": "/JuhDavid/JuhDavid.github.io/index.html",
+    "main.d71a850c.css.map": "/JuhDavid/JuhDavid.github.io/static/css/main.d71a850c.css.map",
+    "main.e9405c3d.js.map": "/JuhDavid/JuhDavid.github.io/static/js/main.e9405c3d.js.map",
+    "787.d5fa4d18.chunk.js.map": "/JuhDavid/JuhDavid.github.io/static/js/787.d5fa4d18.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d71a850c.css",
+    "static/js/main.e9405c3d.js"
+  ]
+}
