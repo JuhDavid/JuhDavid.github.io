@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dávid Juhász - AI Researcher & Solution Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-beige: #f5f3f0;
+            --dark-blue: #1e3a8a;
+            --bright-blue: #3b82f6;
+            --warm-gray: #6b7280;
+            --text-dark: #1f2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-beige) 0%, #ffffff 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(245, 243, 240, 0.95);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        
+        .card-hover:hover {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.4), 0 0 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .skill-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .publication-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        
+        .publication-card:hover {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25), 0 0 25px rgba(59, 130, 246, 0.12);
+            transform: scale(1.01);
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            border: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        .cta-button:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.15);
+            transform: scale(1.02);
+        }
+        
+        .secondary-button {
+            border: 2px solid var(--bright-blue);
+            background: transparent;
+            padding: 14px 32px;
+            border-radius: 12px;
+            color: var(--bright-blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        
+        .secondary-button:hover {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.15);
+            transform: scale(1.02);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover {
+            color: var(--bright-blue);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .nav-link.active {
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(245, 243, 240, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text">Dávid Juhász</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link active">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Home</a>
+                <a href="about.html" class="block text-gray-800 hover:text-blue-600 transition-colors">About</a>
+                <a href="portfolio.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Portfolio</a>
+                <a href="contact.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center relative pt-20">
+        <div class="max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center fade-in">
+                <div class="mb-8">
+                    <img src="images/Messenger_creation_BFACB659-DFAC-4CA4-A769-4F25F3A9E783.jpeg" alt="Dávid Juhász" class="w-48 h-48 rounded-full mx-auto object-cover border-4 border-blue-400 shadow-lg mb-8">
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text">AI Researcher</span><br>
+                    <span class="text-gray-800">& Solution Architect</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl mb-8 text-gray-600">
+                    Exploring the intersection of artificial intelligence and human cognition
+                </p>
+                
+                <p class="text-lg text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto">
+                    Bridging the gap between cutting-edge AI research and practical enterprise solutions. 
+                    Specializing in cognitive neuroscience and AI-driven workflow optimization.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="portfolio.html" class="cta-button">Explore My Work</a>
+                    <a href="contact.html" class="secondary-button text-center">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Overview -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Core Strengths</h2>
+            <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                <div class="card-hover text-center">
+                    <h3 class="text-2xl font-bold mb-4">AI-Powered Software Architecture</h3>
+                    <p class="text-gray-600">System design, AI integration, scalable solutions</p>
+                </div>
+                <div class="card-hover text-center">
+                    <h3 class="text-2xl font-bold mb-4">Research Methods</h3>
+                    <p class="text-gray-600">Experimental design, data analysis, academic writing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Publications -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Featured Publications</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="publication-card">
+                    <h3 class="text-xl font-semibold mb-4">Psychological profiling of GPT models</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive analysis of psychological characteristics in large language models</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-blue-600">2024</span>
+                        <a href="https://doi.org/10.31234/osf.io/vk9qe_v1" class="text-blue-600 hover:text-blue-800" target="_blank">View Publication →</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <h3 class="text-xl font-semibold mb-4">I, A.I. - Artificial Consciousness</h3>
+                    <p class="text-gray-600 mb-4">Interdisciplinary exploration of artificial consciousness and its implications</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-blue-600">2025</span>
+                        <a href="https://doi.org/10.5281/ZENODO.14751376" class="text-blue-600 hover:text-blue-800" target="_blank">View Publication →</a>
+                    </div>
+                </div>
+                
+                <div class="publication-card">
+                    <h3 class="text-xl font-semibold mb-4">Non-Human Semantic Categorisation</h3>
+                    <p class="text-gray-600 mb-4">Novel approaches to semantic understanding in artificial systems</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-blue-600">2025</span>
+                        <a href="https://doi.org/10.31234/osf.io/xauhj_v1" class="text-blue-600 hover:text-blue-800" target="_blank">View Publication →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8 gradient-text">Ready to Collaborate?</h2>
+            <p class="text-xl text-gray-600 mb-8">
+                Let's explore how AI research and practical solutions can improve our lives.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="about.html" class="cta-button">Learn More About Me</a>
+                <a href="portfolio.html" class="secondary-button">View My Portfolio</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-600">2025 Dávid Juhász</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Dávid Juhász</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-beige: #f5f3f0;
+            --dark-blue: #1e3a8a;
+            --bright-blue: #3b82f6;
+            --warm-gray: #6b7280;
+            --text-dark: #1f2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-beige) 0%, #ffffff 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(245, 243, 240, 0.95);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid rgba(30, 58, 138, 0.3);
+            background: transparent;
+            color: var(--dark-blue);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 4px;
+            font-weight: 500;
+        }
+        
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--bright-blue);
+            color: var(--bright-blue);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.3), 0 0 25px rgba(59, 130, 246, 0.12);
+            transform: scale(1.03);
+        }
+        
+        .publication-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-bottom: 1.5rem;
+        }
+        
+        .publication-card:hover {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25), 0 0 25px rgba(59, 130, 246, 0.12);
+            transform: scale(1.01);
+        }
+        
+        .publication-card.hidden {
+            display: none;
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(30, 58, 138, 0.3);
+            border-radius: 25px;
+            padding: 12px 20px;
+            color: var(--text-dark);
+            width: 100%;
+            max-width: 400px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--bright-blue);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 4px;
+            font-weight: 500;
+        }
+        
+        .doi-link {
+            color: var(--bright-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .doi-link:hover {
+            color: var(--dark-blue);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover {
+            color: var(--bright-blue);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .nav-link.active {
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(245, 243, 240, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text">Dávid Juhász</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link">About</a>
+                    <a href="portfolio.html" class="nav-link active">Portfolio</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Home</a>
+                <a href="about.html" class="block text-gray-800 hover:text-blue-600 transition-colors">About</a>
+                <a href="portfolio.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Portfolio</a>
+                <a href="contact.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-6 text-center fade-in">
+            <div class="mb-8">
+                <img src="images/VID_20241115_103219_exported_18241.jpg" alt="Dávid Juhász" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-purple-400 shadow-lg mb-6" style="object-position: 83% center;">
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-8">
+                <span class="gradient-text">Portfolio</span>
+            </h1>
+            
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Here you can explore my publications, conference presentations, and various contributions 
+                to the fields of AI and cognitive neuroscience.
+            </p>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-8 gradient-text">Publications</h2>
+            
+            <!-- Search -->
+            <div class="flex justify-center mb-8">
+                <input type="text" id="search-input" class="search-box max-w-xl w-full" placeholder="Search publications...">
+            </div>
+            
+            <!-- Publications Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="publications-grid">
+                <div class="publication-card flex flex-col" data-category="published research" data-year="2024">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold mb-4">Psychological profiling of the latest GPT models</h3>
+                        <p class="text-gray-600 mb-4">
+                            Comprehensive analysis of psychological characteristics in large language models, 
+                            examining personality traits, cognitive patterns, and behavioral tendencies.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tag">Research Paper</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">2024</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://doi.org/10.31234/osf.io/vk9qe_v1" class="doi-link text-sm" target="_blank">DOI: 10.31234/osf.io/vk9qe_v1</a>
+                            <span class="text-sm text-blue-600 font-semibold">Preprint</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-card flex flex-col" data-category="published book" data-year="2025">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold mb-4">I, A.I. - An interdisciplinary exploration of artificial consciousness</h3>
+                        <p class="text-gray-600 mb-4">
+                            Interdisciplinary exploration of artificial consciousness, examining philosophical, 
+                            neuroscientific, and computational perspectives on machine awareness.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tag">Essay</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">2025</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://doi.org/10.5281/ZENODO.14751376" class="doi-link text-sm" target="_blank">DOI: 10.5281/ZENODO.14751376</a>
+                            <span class="text-sm text-blue-600 font-semibold">Monograph</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-card flex flex-col" data-category="published research" data-year="2025">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold mb-4">Non-Human Models of Semantic Categorisation</h3>
+                        <p class="text-gray-600 mb-4">
+                            Novel approaches to semantic understanding in artificial systems, exploring 
+                            alternative frameworks for knowledge representation and categorization.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tag">Research Paper</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">2025</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://doi.org/10.31234/osf.io/xauhj_v1" class="doi-link text-sm" target="_blank">DOI: 10.31234/osf.io/xauhj_v1</a>
+                            <span class="text-sm text-blue-600 font-semibold">Preprint</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="publication-card flex flex-col" data-category="published guide" data-year="2025">
+                    <div class="flex-grow">
+                        <h3 class="text-xl font-bold mb-4">Petri vs RAGAS: A practical guide to evaluating AI performance</h3>
+                        <p class="text-gray-600 mb-4">
+                            Comparative analysis of AI evaluation methodologies, providing practical insights 
+                            for assessing and improving artificial intelligence system performance.
+                        </p>
+                    </div>
+                    <div class="mt-auto">
+                        <div class="flex flex-wrap mb-4">
+                            <span class="tag">Practical Guide</span>
+                            <span class="tag">Published</span>
+                            <span class="tag">2025</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="https://medium.com/@david.juhasz_55780/petri-vs-ragas-a-practical-guide-to-evaluating-ai-performance-b47b9d9eebdb" class="text-blue-600 hover:text-blue-800 text-sm font-semibold" target="_blank">View Article →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conferences Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Conference Presentations</h2>
+            
+            <div class="max-w-4xl mx-auto space-y-6">
+                <div class="publication-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Hungarian Psychological Society (MPT) 2025 Grand Conference</h3>
+                            <p class="text-blue-600">Keynote Speaker & International Block President</p>
+                        </div>
+                        <span class="text-sm text-gray-600">May 29-31, 2025</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Presentation:</strong> Psychological profiling of the latest GPT models
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        Budapest, Hungary • With Újhelyi Adrienn (ELTE PPK)
+                    </p>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Human Sciences and Artificial Intelligence Conference</h3>
+                            <p class="text-blue-600">Keynote Speaker</p>
+                        </div>
+                        <span class="text-sm text-gray-600">November 14, 2024</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Presentation:</strong> Psychological profiling of the latest GPT models
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        Budapest, Hungary • With Újhelyi Adrienn (ELTE PPK)
+                    </p>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Pályapanoráma Program</h3>
+                            <p class="text-blue-600">Workshop Leader</p>
+                        </div>
+                        <span class="text-sm text-gray-600">September 19, 2025</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Workshop:</strong> Career development and AI adoption in the workplace
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        Miskolc, Hungary • With PeakX • Developed practice website for AI tool usage
+                    </p>
+                </div>
+                
+                <div class="publication-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold">Egészségügyben Dolgozó Titkárnők 27. Országos Konferenciája</h3>
+                            <p class="text-blue-600">Interactive Workshop Leader</p>
+                        </div>
+                        <span class="text-sm text-gray-600">October 1, 2025</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        <strong>Workshop:</strong> Current state of AI development and implications for healthcare workers
+                    </p>
+                    <p class="text-sm text-gray-600">
+                        Visegrád, Hungary • Hungarian Hospital Association • With PeakX
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Industry Articles</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="publication-card">
+                    <h3 class="text-xl font-bold mb-4">Current AI Development and Implications for Fintech</h3>
+                    <p class="text-gray-600 mb-4">
+                        Series of articles exploring the latest developments in artificial intelligence 
+                        and their practical implications for the financial technology sector.
+                    </p>
+                    <div class="flex flex-wrap mb-4">
+                        <span class="tag">FinTech</span>
+                        <span class="tag">AI Applications</span>
+                        <span class="tag">Industry Analysis</span>
+                    </div>
+                    <a href="https://fintech.hu/author/juhaszdavid/" class="doi-link" target="_blank">
+                        Read Articles on FinTech.hu →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-600">2025 Dávid Juhász</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        });
+
+        // Portfolio filters
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const publications = document.querySelectorAll('.publication-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                
+                const filter = btn.dataset.filter;
+                
+                publications.forEach(pub => {
+                    const categories = pub.dataset.category || '';
+                    const year = pub.dataset.year || '';
+                    
+                    if (filter === 'all' || 
+                        categories.includes(filter) || 
+                        year === filter) {
+                        pub.classList.remove('hidden');
+                    } else {
+                        pub.classList.add('hidden');
+                    }
+                });
+            });
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('search-input');
+        
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            publications.forEach(pub => {
+                const title = pub.querySelector('h3').textContent.toLowerCase();
+                const description = pub.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    pub.classList.remove('hidden');
+                } else {
+                    pub.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

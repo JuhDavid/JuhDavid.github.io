@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Dávid Juhász</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-beige: #f5f3f0;
+            --dark-blue: #1e3a8a;
+            --bright-blue: #3b82f6;
+            --warm-gray: #6b7280;
+            --text-dark: #1f2937;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--primary-beige) 0%, #ffffff 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            background: rgba(245, 243, 240, 0.95);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .education-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(30, 58, 138, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-card:hover {
+            border-color: var(--bright-blue);
+            box-shadow: 0 0 12px rgba(59, 130, 246, 0.25), 0 0 25px rgba(59, 130, 246, 0.12);
+            transform: scale(1.01);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .nav-link:hover {
+            color: var(--bright-blue);
+            text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .nav-link.active {
+            color: var(--dark-blue);
+            font-weight: 600;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--bright-blue);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            margin: 4px;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            width: 100%;
+            background: #e5e7eb;
+            border-radius: 9999px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-blue), var(--bright-blue));
+            border-radius: 9999px;
+            transition: width 1s ease-out;
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            width: 100%;
+            background: rgba(245, 243, 240, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(30, 58, 138, 0.1);
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold gradient-text">Dávid Juhász</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="about.html" class="nav-link active">About</a>
+                    <a href="portfolio.html" class="nav-link">Portfolio</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="px-6 py-4 space-y-4">
+                <a href="index.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Home</a>
+                <a href="about.html" class="block text-gray-800 hover:text-blue-600 transition-colors">About</a>
+                <a href="portfolio.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Portfolio</a>
+                <a href="contact.html" class="block text-gray-800 hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20">
+        <div class="max-w-7xl mx-auto px-6 text-center fade-in">
+            <div class="mb-8">
+                <img src="images/Messenger_creation_F5C2BA5B-9054-4B54-8C1C-BA2AD5A7FFF8.jpeg" alt="Dávid Juhász" class="w-32 h-32 rounded-full mx-auto object-cover border-4 border-green-400 shadow-lg mb-6">
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold mb-8">
+                <span class="gradient-text">About Me</span>
+            </h1>
+            
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Passionate about bridging the gap between cutting-edge AI research and practical applications. 
+                I thrive in the interdisciplenary, and grow from each challenge.
+            </p>
+        </div>
+    </section>
+
+    <!-- Professional Journey -->
+    <section class="py-20">
+        <div class="max-w-6xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Professional Journey</h2>
+            <div class="space-y-6">
+                <div class="education-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Solution Architect</h3>
+                            <p class="text-blue-600 mb-2">PeakX • Budapest, Hungary</p>
+                        </div>
+                        <span class="text-gray-600 font-semibold">2025</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Leading AI-driven solution development for enterprise clients. Serving as product owner 
+                        for advanced AI agent evaluation systems and facilitating research partnerships with universities.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">AI Architecture</span>
+                        <span class="tag">Product Leadership</span>
+                        <span class="tag">Research</span>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">AI Expert & Modernisation Specialist</h3>
+                            <p class="text-blue-600 mb-2">AD csoport kft • Budapest, Hungary</p>
+                        </div>
+                        <span class="text-gray-600 font-semibold">2024</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Executed internal software development projects and delivered tailored consulting 
+                        for client modernization and AI-driven workflow improvements.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Consulting</span>
+                        <span class="tag">Development</span>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">University Research Support</h3>
+                            <p class="text-blue-600 mb-2">Eötvös Loránd University • Budapest, Hungary</p>
+                        </div>
+                        <span class="text-gray-600 font-semibold">2021</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Led various research projects and assisted with data gathering for the Integrative Neuropsychology Research Group 
+                        and the Disinformation and Artificial Intelligence Research Group.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Neuroscience</span>
+                        <span class="tag">Data Science</span>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">English Teacher</h3>
+                            <p class="text-blue-600 mb-2">Kaméleon tanulócsoport • Budapest, Hungary</p>
+                        </div>
+                        <span class="text-gray-600 font-semibold">2021</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">
+                        Taught English in inclusive classroom settings for students aged 6-14, 
+                        adapting instructional methods for learners with ADHD and learning disabilities.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Education</span>
+                        <span class="tag">Inclusive Teaching</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Areas of Expertise</h2>
+            
+            <!-- Core Strengths -->
+            <div class="max-w-6xl mx-auto mb-16">
+                <h3 class="text-2xl font-bold text-center mb-8 text-blue-600">Core Strengths</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xl font-bold">AI-Powered Software Architecture</span>
+                            <span class="text-sm text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 98%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">System design, AI integration, scalable solutions</p>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-xl font-bold">Research Methods</span>
+                            <span class="text-sm text-green-600 font-semibold">Expert</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 96%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">Experimental design, data analysis, academic writing</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Advanced Skills -->
+            <div class="max-w-6xl mx-auto mb-16">
+                <h3 class="text-2xl font-bold text-center mb-8 text-blue-500">Advanced Skills</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-lg font-bold">Cognitive Neuroscience</span>
+                            <span class="text-sm text-blue-600 font-semibold">Advanced</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">Brain-computer interfaces, neural mechanisms, neuropsychology</p>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-lg font-bold">Public Speaking</span>
+                            <span class="text-sm text-blue-600 font-semibold">Advanced</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 86%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">Presentations, workshops, academic conferences</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Proficient Skills -->
+            <div class="max-w-6xl mx-auto">
+                <h3 class="text-2xl font-bold text-center mb-8 text-gray-600">Proficient Skills</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-lg font-bold">Software Development</span>
+                            <span class="text-sm text-gray-600 font-semibold">Proficient</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 52%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">Python, React, Node.js, Typescript</p>
+                    </div>
+                    
+                    <div class="education-card">
+                        <div class="flex justify-between mb-3">
+                            <span class="text-lg font-bold">Project Management</span>
+                            <span class="text-sm text-gray-600 font-semibold">Proficient</span>
+                        </div>
+                        <div class="skill-bar mb-3">
+                            <div class="skill-fill" style="width: 72%"></div>
+                        </div>
+                        <p class="text-sm text-gray-600">Agile methodologies, team coordination, delivery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Education & Training</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="education-card">
+                    <h3 class="text-xl font-bold mb-2">Cognitive and Computational Neuroscience MSc</h3>
+                    <p class="text-blue-600 mb-2">Eötvös Loránd University</p>
+                    <p class="text-gray-600 mb-4">2024 - 2026</p>
+                    <p class="text-sm text-gray-600">Thesis: Utilising AI in research methodology - Bridging the gap between qualitative and quantitative research using LLMs</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3 class="text-xl font-bold mb-2">Psychology BA</h3>
+                    <p class="text-blue-600 mb-2">Eötvös Loránd University</p>
+                    <p class="text-gray-600 mb-4">2021 - 2024</p>
+                    <p class="text-sm text-gray-600">Final grade: Excellent | Thesis: Psychological profiling of the latest GPT models</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3 class="text-xl font-bold mb-2">BCI and Neurotechnology Spring School</h3>
+                    <p class="text-blue-600 mb-2">g.tec medical engineering GmbH</p>
+                    <p class="text-gray-600 mb-4">2025</p>
+                    <p class="text-sm text-gray-600">Remote (Vienna) | Final grade: 95%</p>
+                </div>
+                
+                <div class="education-card">
+                    <h3 class="text-xl font-bold mb-2">Life Coach</h3>
+                    <p class="text-blue-600 mb-2">Lemma Coaching</p>
+                    <p class="text-gray-600 mb-4">2020</p>
+                    <p class="text-sm text-gray-600">Budapest, Hungary</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center mb-16 gradient-text">Language Skills</h2>
+            <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="education-card">
+                    <h3 class="text-2xl font-bold mb-6">English</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Listening</span>
+                            <span class="text-green-600 font-semibold">C2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Reading</span>
+                            <span class="text-green-600 font-semibold">C2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Writing</span>
+                            <span class="text-green-600 font-semibold">C2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Spoken Production</span>
+                            <span class="text-green-600 font-semibold">C2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Spoken Interaction</span>
+                            <span class="text-green-600 font-semibold">C2</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="education-card">
+                    <h3 class="text-2xl font-bold mb-6">Italian</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between">
+                            <span>Listening</span>
+                            <span class="text-yellow-600 font-semibold">B2</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Reading</span>
+                            <span class="text-green-600 font-semibold">C1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Writing</span>
+                            <span class="text-yellow-600 font-semibold">B1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Spoken Production</span>
+                            <span class="text-yellow-600 font-semibold">B1</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span>Spoken Interaction</span>
+                            <span class="text-yellow-600 font-semibold">B2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-gray-600">2025 Dávid Juhász</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
